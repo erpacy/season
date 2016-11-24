@@ -2,6 +2,7 @@ package org.seasonteam.season.service;
 
 import org.seasonteam.season.model.User;
 import org.seasonteam.season.model.dto.ResultHeader;
+import org.seasonteam.season.model.dto.UploadResult;
 
 /**
  * 用户服务
@@ -26,4 +27,5 @@ public interface UserService {
      * @return
      */
     ResultHeader login(String username, String password);
+
 }
