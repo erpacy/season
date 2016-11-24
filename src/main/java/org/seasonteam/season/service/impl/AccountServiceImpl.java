@@ -7,6 +7,7 @@ import org.seasonteam.season.model.AccountExample;
 import org.seasonteam.season.model.dto.AccountQueryResult;
 import org.seasonteam.season.model.dto.ResultHeader;
 import org.seasonteam.season.service.AccountService;
+import org.seasonteam.season.util.BaseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,9 @@ public class AccountServiceImpl implements AccountService {
     public ResultHeader add(Account account) {
         ResultHeader result = new AccountQueryResult();
         try {
+            if (account.getAccountId() == null) {
+                account.setAccountId(BaseUtil.genId());
+            }
             accountMapper.insertSelective(account);
             result.setMsg("添加成功");
         } catch (Exception e) {
@@ -56,6 +60,11 @@ public class AccountServiceImpl implements AccountService {
     public ResultHeader update(Account account) {
         ResultHeader result = new AccountQueryResult();
         try {
+            if (account.getAccountId() == null) {
+                result.setCode(0);
+                result.setMsg("主键为空，修改账本失败");
+                return null;
+            }
             accountMapper.updateByPrimaryKeySelective(account);
             result.setMsg("修改成功");
         } catch (Exception e) {
