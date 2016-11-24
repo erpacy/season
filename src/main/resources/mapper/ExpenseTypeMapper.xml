@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.seasonteam.season.mapper.ExpenseTypeMapper" >
+  <resultMap id="BaseResultMap" type="org.seasonteam.season.model.ExpenseType" >
+    <id column="et_id" property="etId" jdbcType="INTEGER" />
+    <result column="et_name" property="etName" jdbcType="VARCHAR" />
+    <result column="et_des" property="etDes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    et_id, et_name, et_des
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.seasonteam.season.model.ExpenseTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from expense_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from expense_type
+    where et_id = #{etId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from expense_type
+    where et_id = #{etId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.seasonteam.season.model.ExpenseTypeExample" >
+    delete from expense_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.seasonteam.season.model.ExpenseType" >
+    insert into expense_type (et_id, et_name, et_des
+      )
+    values (#{etId,jdbcType=INTEGER}, #{etName,jdbcType=VARCHAR}, #{etDes,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="org.seasonteam.season.model.ExpenseType" >
+    insert into expense_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="etId != null" >
+        et_id,
+      </if>
+      <if test="etName != null" >
+        et_name,
+      </if>
+      <if test="etDes != null" >
+        et_des,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="etId != null" >
+        #{etId,jdbcType=INTEGER},
+      </if>
+      <if test="etName != null" >
+        #{etName,jdbcType=VARCHAR},
+      </if>
+      <if test="etDes != null" >
+        #{etDes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.seasonteam.season.model.ExpenseTypeExample" resultType="java.lang.Integer" >
+    select count(*) from expense_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update expense_type
+    <set >
+      <if test="record.etId != null" >
+        et_id = #{record.etId,jdbcType=INTEGER},
+      </if>
+      <if test="record.etName != null" >
+        et_name = #{record.etName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.etDes != null" >
+        et_des = #{record.etDes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update expense_type
+    set et_id = #{record.etId,jdbcType=INTEGER},
+      et_name = #{record.etName,jdbcType=VARCHAR},
+      et_des = #{record.etDes,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.seasonteam.season.model.ExpenseType" >
+    update expense_type
+    <set >
+      <if test="etName != null" >
+        et_name = #{etName,jdbcType=VARCHAR},
+      </if>
+      <if test="etDes != null" >
+        et_des = #{etDes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where et_id = #{etId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.seasonteam.season.model.ExpenseType" >
+    update expense_type
+    set et_name = #{etName,jdbcType=VARCHAR},
+      et_des = #{etDes,jdbcType=VARCHAR}
+    where et_id = #{etId,jdbcType=INTEGER}
+  </update>
+</mapper>

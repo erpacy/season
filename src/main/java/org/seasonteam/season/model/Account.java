@@ -13,6 +13,10 @@ public class Account {
 
     private Date createTime;
 
+    private String appid;
+
+    private String userimage;
+
     public Integer getAccountId() {
         return accountId;
     }
@@ -51,5 +55,21 @@ public class Account {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public String getAppid() {
+        return appid;
+    }
+
+    public void setAppid(String appid) {
+        this.appid = appid == null ? null : appid.trim();
+    }
+
+    public String getUserimage() {
+        return userimage;
+    }
+
+    public void setUserimage(String userimage) {
+        this.userimage = userimage == null ? null : userimage.trim();
     }
 }

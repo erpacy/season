@@ -5,11 +5,6 @@ import org.apache.ibatis.annotations.Param;
 import org.seasonteam.season.model.Account;
 import org.seasonteam.season.model.AccountExample;
 
-/**
- * AccountMapper
- *
- * @author Acy
- */
 public interface AccountMapper {
     int countByExample(AccountExample example);
 

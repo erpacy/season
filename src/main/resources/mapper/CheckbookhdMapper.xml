@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.seasonteam.season.mapper.CheckbookhdMapper" >
+  <resultMap id="BaseResultMap" type="org.seasonteam.season.model.Checkbookhd" >
+    <id column="hd_id" property="hdId" jdbcType="VARCHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="hd_name" property="hdName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="hd_money" property="hdMoney" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    hd_id, userId, hd_name, create_time, hd_money
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.seasonteam.season.model.CheckbookhdExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from checkbookhd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from checkbookhd
+    where hd_id = #{hdId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from checkbookhd
+    where hd_id = #{hdId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="org.seasonteam.season.model.CheckbookhdExample" >
+    delete from checkbookhd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="org.seasonteam.season.model.Checkbookhd" >
+    insert into checkbookhd (hd_id, userId, hd_name, 
+      create_time, hd_money)
+    values (#{hdId,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, #{hdName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{hdMoney,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="org.seasonteam.season.model.Checkbookhd" >
+    insert into checkbookhd
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hdId != null" >
+        hd_id,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="hdName != null" >
+        hd_name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="hdMoney != null" >
+        hd_money,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hdId != null" >
+        #{hdId,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="hdName != null" >
+        #{hdName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hdMoney != null" >
+        #{hdMoney,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="org.seasonteam.season.model.CheckbookhdExample" resultType="java.lang.Integer" >
+    select count(*) from checkbookhd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update checkbookhd
+    <set >
+      <if test="record.hdId != null" >
+        hd_id = #{record.hdId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.hdName != null" >
+        hd_name = #{record.hdName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.hdMoney != null" >
+        hd_money = #{record.hdMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update checkbookhd
+    set hd_id = #{record.hdId,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=INTEGER},
+      hd_name = #{record.hdName,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      hd_money = #{record.hdMoney,jdbcType=DOUBLE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="org.seasonteam.season.model.Checkbookhd" >
+    update checkbookhd
+    <set >
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="hdName != null" >
+        hd_name = #{hdName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="hdMoney != null" >
+        hd_money = #{hdMoney,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where hd_id = #{hdId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="org.seasonteam.season.model.Checkbookhd" >
+    update checkbookhd
+    set userId = #{userid,jdbcType=INTEGER},
+      hd_name = #{hdName,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      hd_money = #{hdMoney,jdbcType=DOUBLE}
+    where hd_id = #{hdId,jdbcType=VARCHAR}
+  </update>
+</mapper>
