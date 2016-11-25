@@ -15,7 +15,7 @@ public class ThymeleafController {
 
     @RequestMapping("/index")
     public String index(HttpServletRequest request) {
-        request.setAttribute("a", "are you ok?");
+        //request.setAttribute("a", "are you ok?");
         return "1";
     }
 }
