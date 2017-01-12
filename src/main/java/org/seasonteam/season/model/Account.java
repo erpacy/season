@@ -3,9 +3,9 @@ package org.seasonteam.season.model;
 import java.util.Date;
 
 public class Account {
-    private Integer accountId;
+    private String accountId;
 
-    private Integer userid;
+    private String userid;
 
     private String accountName;
 
@@ -13,24 +13,20 @@ public class Account {
 
     private Date createTime;
 
-    private String appid;
-
-    private String userimage;
-
-    public Integer getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId == null ? null : accountId.trim();
     }
 
-    public Integer getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
     }
 
     public String getAccountName() {
@@ -55,21 +51,5 @@ public class Account {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public String getAppid() {
-        return appid;
-    }
-
-    public void setAppid(String appid) {
-        this.appid = appid == null ? null : appid.trim();
-    }
-
-    public String getUserimage() {
-        return userimage;
-    }
-
-    public void setUserimage(String userimage) {
-        this.userimage = userimage == null ? null : userimage.trim();
     }
 }

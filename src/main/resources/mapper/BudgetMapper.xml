@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="org.seasonteam.season.mapper.ExpenseTypeMapper" >
-  <resultMap id="BaseResultMap" type="org.seasonteam.season.model.ExpenseType" >
-    <id column="ET_ID" property="etId" jdbcType="INTEGER" />
-    <result column="ET_NAME" property="etName" jdbcType="VARCHAR" />
-    <result column="ET_DES" property="etDes" jdbcType="VARCHAR" />
+<mapper namespace="org.seasonteam.season.mapper.BudgetMapper" >
+  <resultMap id="BaseResultMap" type="org.seasonteam.season.model.Budget" >
+    <id column="BUDGET_ID" property="budgetId" jdbcType="VARCHAR" />
+    <result column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="BDATETIME" property="bdatetime" jdbcType="VARCHAR" />
+    <result column="MONEY" property="money" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -65,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    ET_ID, ET_NAME, ET_DES
+    BUDGET_ID, UID, BDATETIME, MONEY
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.seasonteam.season.model.ExpenseTypeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.seasonteam.season.model.BudgetExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from expense_type
+    from budget
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -81,70 +82,79 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from expense_type
-    where ET_ID = #{etId,jdbcType=INTEGER}
+    from budget
+    where BUDGET_ID = #{budgetId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from expense_type
-    where ET_ID = #{etId,jdbcType=INTEGER}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from budget
+    where BUDGET_ID = #{budgetId,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="org.seasonteam.season.model.ExpenseTypeExample" >
-    delete from expense_type
+  <delete id="deleteByExample" parameterType="org.seasonteam.season.model.BudgetExample" >
+    delete from budget
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.seasonteam.season.model.ExpenseType" >
-    insert into expense_type (ET_ID, ET_NAME, ET_DES
-      )
-    values (#{etId,jdbcType=INTEGER}, #{etName,jdbcType=VARCHAR}, #{etDes,jdbcType=VARCHAR}
-      )
+  <insert id="insert" parameterType="org.seasonteam.season.model.Budget" >
+    insert into budget (BUDGET_ID, UID, BDATETIME, 
+      MONEY)
+    values (#{budgetId,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, #{bdatetime,jdbcType=VARCHAR}, 
+      #{money,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="org.seasonteam.season.model.ExpenseType" >
-    insert into expense_type
+  <insert id="insertSelective" parameterType="org.seasonteam.season.model.Budget" >
+    insert into budget
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="etId != null" >
-        ET_ID,
+      <if test="budgetId != null" >
+        BUDGET_ID,
       </if>
-      <if test="etName != null" >
-        ET_NAME,
+      <if test="uid != null" >
+        UID,
       </if>
-      <if test="etDes != null" >
-        ET_DES,
+      <if test="bdatetime != null" >
+        BDATETIME,
+      </if>
+      <if test="money != null" >
+        MONEY,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="etId != null" >
-        #{etId,jdbcType=INTEGER},
+      <if test="budgetId != null" >
+        #{budgetId,jdbcType=VARCHAR},
       </if>
-      <if test="etName != null" >
-        #{etName,jdbcType=VARCHAR},
+      <if test="uid != null" >
+        #{uid,jdbcType=VARCHAR},
       </if>
-      <if test="etDes != null" >
-        #{etDes,jdbcType=VARCHAR},
+      <if test="bdatetime != null" >
+        #{bdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.seasonteam.season.model.ExpenseTypeExample" resultType="java.lang.Integer" >
-    select count(*) from expense_type
+  <select id="countByExample" parameterType="org.seasonteam.season.model.BudgetExample" resultType="java.lang.Integer" >
+    select count(*) from budget
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update expense_type
+    update budget
     <set >
-      <if test="record.etId != null" >
-        ET_ID = #{record.etId,jdbcType=INTEGER},
+      <if test="record.budgetId != null" >
+        BUDGET_ID = #{record.budgetId,jdbcType=VARCHAR},
       </if>
-      <if test="record.etName != null" >
-        ET_NAME = #{record.etName,jdbcType=VARCHAR},
+      <if test="record.uid != null" >
+        UID = #{record.uid,jdbcType=VARCHAR},
       </if>
-      <if test="record.etDes != null" >
-        ET_DES = #{record.etDes,jdbcType=VARCHAR},
+      <if test="record.bdatetime != null" >
+        BDATETIME = #{record.bdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        MONEY = #{record.money,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -152,30 +162,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update expense_type
-    set ET_ID = #{record.etId,jdbcType=INTEGER},
-      ET_NAME = #{record.etName,jdbcType=VARCHAR},
-      ET_DES = #{record.etDes,jdbcType=VARCHAR}
+    update budget
+    set BUDGET_ID = #{record.budgetId,jdbcType=VARCHAR},
+      UID = #{record.uid,jdbcType=VARCHAR},
+      BDATETIME = #{record.bdatetime,jdbcType=VARCHAR},
+      MONEY = #{record.money,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.seasonteam.season.model.ExpenseType" >
-    update expense_type
+  <update id="updateByPrimaryKeySelective" parameterType="org.seasonteam.season.model.Budget" >
+    update budget
     <set >
-      <if test="etName != null" >
-        ET_NAME = #{etName,jdbcType=VARCHAR},
+      <if test="uid != null" >
+        UID = #{uid,jdbcType=VARCHAR},
       </if>
-      <if test="etDes != null" >
-        ET_DES = #{etDes,jdbcType=VARCHAR},
+      <if test="bdatetime != null" >
+        BDATETIME = #{bdatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        MONEY = #{money,jdbcType=DOUBLE},
       </if>
     </set>
-    where ET_ID = #{etId,jdbcType=INTEGER}
+    where BUDGET_ID = #{budgetId,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.seasonteam.season.model.ExpenseType" >
-    update expense_type
-    set ET_NAME = #{etName,jdbcType=VARCHAR},
-      ET_DES = #{etDes,jdbcType=VARCHAR}
-    where ET_ID = #{etId,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="org.seasonteam.season.model.Budget" >
+    update budget
+    set UID = #{uid,jdbcType=VARCHAR},
+      BDATETIME = #{bdatetime,jdbcType=VARCHAR},
+      MONEY = #{money,jdbcType=DOUBLE}
+    where BUDGET_ID = #{budgetId,jdbcType=VARCHAR}
   </update>
 </mapper>

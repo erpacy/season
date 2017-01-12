@@ -1,16 +1,17 @@
 package org.seasonteam.season.mapper;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.seasonteam.season.model.User;
 import org.seasonteam.season.model.UserExample;
+
+import java.util.List;
 
 public interface UserMapper {
     int countByExample(UserExample example);
 
     int deleteByExample(UserExample example);
 
-    int deleteByPrimaryKey(Integer uid);
+    int deleteByPrimaryKey(String uid);
 
     int insert(User record);
 
@@ -18,7 +19,7 @@ public interface UserMapper {
 
     List<User> selectByExample(UserExample example);
 
-    User selectByPrimaryKey(Integer uid);
+    User selectByPrimaryKey(String uid);
 
     int updateByExampleSelective(@Param("record") User record, @Param("example") UserExample example);
 

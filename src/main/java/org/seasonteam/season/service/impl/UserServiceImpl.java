@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
         try {
             result = new ResultHeader();
             if (user.getUid() == null) {
-                user.setUid(BaseUtil.genId());
+                user.setUid(BaseUtil.genUUID());
             }
             if (StringUtils.isNotBlank(user.getPassword())) {
                 user.setPassword(BaseUtil.md5(user.getPassword()));

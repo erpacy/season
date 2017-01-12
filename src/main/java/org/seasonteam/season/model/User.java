@@ -1,26 +1,32 @@
 package org.seasonteam.season.model;
 
+import java.util.Date;
+
 public class User {
-    private Integer uid;
+    private String uid;
 
     private String username;
 
     private String password;
 
-    private String token;
-
-    private String regTime;
+    private Date regTime;
 
     private String appid;
 
     private String userimage;
 
-    public Integer getUid() {
+    private String email;
+
+    private String phone;
+
+    private String token;
+
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setUid(String uid) {
+        this.uid = uid == null ? null : uid.trim();
     }
 
     public String getUsername() {
@@ -39,20 +45,12 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token == null ? null : token.trim();
-    }
-
-    public String getRegTime() {
+    public Date getRegTime() {
         return regTime;
     }
 
-    public void setRegTime(String regTime) {
-        this.regTime = regTime == null ? null : regTime.trim();
+    public void setRegTime(Date regTime) {
+        this.regTime = regTime;
     }
 
     public String getAppid() {
@@ -69,5 +67,29 @@ public class User {
 
     public void setUserimage(String userimage) {
         this.userimage = userimage == null ? null : userimage.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token == null ? null : token.trim();
     }
 }

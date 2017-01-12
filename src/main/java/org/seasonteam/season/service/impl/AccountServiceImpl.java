@@ -44,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
         ResultHeader result = new AccountQueryResult();
         try {
             if (account.getAccountId() == null) {
-                account.setAccountId(BaseUtil.genId());
+                account.setAccountId(BaseUtil.genUUID());
             }
             accountMapper.insertSelective(account);
             result.setMsg("添加成功");
@@ -113,8 +113,8 @@ public class AccountServiceImpl implements AccountService {
         if (account.getCreateTime() != null) {
             criteria.andCreateTimeEqualTo(account.getCreateTime());
         }
-        if (StringUtils.isNotBlank(account.getAppid())) {
-            criteria.andAppidEqualTo(account.getAppid());
+        if (StringUtils.isNotBlank(account.getUserid())) {
+            criteria.andUseridEqualTo(account.getUserid());
         }
         return example;
     }

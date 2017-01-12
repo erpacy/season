@@ -5,9 +5,13 @@ import java.util.Date;
 public class Checkbookhd {
     private String hdId;
 
-    private Integer userid;
+    private String userid;
 
     private String hdName;
+
+    private String hdCompany;
+
+    private Integer hdType;
 
     private Date createTime;
 
@@ -21,12 +25,12 @@ public class Checkbookhd {
         this.hdId = hdId == null ? null : hdId.trim();
     }
 
-    public Integer getUserid() {
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserid(String userid) {
+        this.userid = userid == null ? null : userid.trim();
     }
 
     public String getHdName() {
@@ -35,6 +39,22 @@ public class Checkbookhd {
 
     public void setHdName(String hdName) {
         this.hdName = hdName == null ? null : hdName.trim();
+    }
+
+    public String getHdCompany() {
+        return hdCompany;
+    }
+
+    public void setHdCompany(String hdCompany) {
+        this.hdCompany = hdCompany == null ? null : hdCompany.trim();
+    }
+
+    public Integer getHdType() {
+        return hdType;
+    }
+
+    public void setHdType(Integer hdType) {
+        this.hdType = hdType;
     }
 
     public Date getCreateTime() {

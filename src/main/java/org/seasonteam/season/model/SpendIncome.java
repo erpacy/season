@@ -3,11 +3,11 @@ package org.seasonteam.season.model;
 import java.util.Date;
 
 public class SpendIncome {
-    private Integer siId;
+    private String siId;
 
-    private Integer hdId;
+    private String hdId;
 
-    private Integer accountId;
+    private String accountId;
 
     private String siDes;
 
@@ -17,30 +17,28 @@ public class SpendIncome {
 
     private Date siDate;
 
-    private Date siTime;
-
-    public Integer getSiId() {
+    public String getSiId() {
         return siId;
     }
 
-    public void setSiId(Integer siId) {
-        this.siId = siId;
+    public void setSiId(String siId) {
+        this.siId = siId == null ? null : siId.trim();
     }
 
-    public Integer getHdId() {
+    public String getHdId() {
         return hdId;
     }
 
-    public void setHdId(Integer hdId) {
-        this.hdId = hdId;
+    public void setHdId(String hdId) {
+        this.hdId = hdId == null ? null : hdId.trim();
     }
 
-    public Integer getAccountId() {
+    public String getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId == null ? null : accountId.trim();
     }
 
     public String getSiDes() {
@@ -73,13 +71,5 @@ public class SpendIncome {
 
     public void setSiDate(Date siDate) {
         this.siDate = siDate;
-    }
-
-    public Date getSiTime() {
-        return siTime;
-    }
-
-    public void setSiTime(Date siTime) {
-        this.siTime = siTime;
     }
 }

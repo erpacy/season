@@ -2,14 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.seasonteam.season.mapper.SpendIncomeMapper" >
   <resultMap id="BaseResultMap" type="org.seasonteam.season.model.SpendIncome" >
-    <id column="si_id" property="siId" jdbcType="INTEGER" />
-    <result column="hd_id" property="hdId" jdbcType="INTEGER" />
-    <result column="account_id" property="accountId" jdbcType="INTEGER" />
-    <result column="si_des" property="siDes" jdbcType="VARCHAR" />
-    <result column="si_type" property="siType" jdbcType="VARCHAR" />
-    <result column="si_money" property="siMoney" jdbcType="DOUBLE" />
-    <result column="si_date" property="siDate" jdbcType="DATE" />
-    <result column="si_time" property="siTime" jdbcType="TIME" />
+    <id column="SI_ID" property="siId" jdbcType="VARCHAR" />
+    <result column="HD_ID" property="hdId" jdbcType="VARCHAR" />
+    <result column="ACCOUNT_ID" property="accountId" jdbcType="VARCHAR" />
+    <result column="SI_DES" property="siDes" jdbcType="VARCHAR" />
+    <result column="SI_TYPE" property="siType" jdbcType="VARCHAR" />
+    <result column="SI_MONEY" property="siMoney" jdbcType="DOUBLE" />
+    <result column="SI_DATE" property="siDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    si_id, hd_id, account_id, si_des, si_type, si_money, si_date, si_time
+    SI_ID, HD_ID, ACCOUNT_ID, SI_DES, SI_TYPE, SI_MONEY, SI_DATE
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.seasonteam.season.model.SpendIncomeExample" >
     select
@@ -86,15 +85,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from spend_income
-    where si_id = #{siId,jdbcType=INTEGER}
+    where SI_ID = #{siId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from spend_income
-    where si_id = #{siId,jdbcType=INTEGER}
+    where SI_ID = #{siId,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="org.seasonteam.season.model.SpendIncomeExample" >
     delete from spend_income
@@ -103,50 +102,47 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.seasonteam.season.model.SpendIncome" >
-    insert into spend_income (si_id, hd_id, account_id, 
-      si_des, si_type, si_money, 
-      si_date, si_time)
-    values (#{siId,jdbcType=INTEGER}, #{hdId,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, 
+    insert into spend_income (SI_ID, HD_ID, ACCOUNT_ID, 
+      SI_DES, SI_TYPE, SI_MONEY, 
+      SI_DATE)
+    values (#{siId,jdbcType=VARCHAR}, #{hdId,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
       #{siDes,jdbcType=VARCHAR}, #{siType,jdbcType=VARCHAR}, #{siMoney,jdbcType=DOUBLE}, 
-      #{siDate,jdbcType=DATE}, #{siTime,jdbcType=TIME})
+      #{siDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.seasonteam.season.model.SpendIncome" >
     insert into spend_income
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="siId != null" >
-        si_id,
+        SI_ID,
       </if>
       <if test="hdId != null" >
-        hd_id,
+        HD_ID,
       </if>
       <if test="accountId != null" >
-        account_id,
+        ACCOUNT_ID,
       </if>
       <if test="siDes != null" >
-        si_des,
+        SI_DES,
       </if>
       <if test="siType != null" >
-        si_type,
+        SI_TYPE,
       </if>
       <if test="siMoney != null" >
-        si_money,
+        SI_MONEY,
       </if>
       <if test="siDate != null" >
-        si_date,
-      </if>
-      <if test="siTime != null" >
-        si_time,
+        SI_DATE,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="siId != null" >
-        #{siId,jdbcType=INTEGER},
+        #{siId,jdbcType=VARCHAR},
       </if>
       <if test="hdId != null" >
-        #{hdId,jdbcType=INTEGER},
+        #{hdId,jdbcType=VARCHAR},
       </if>
       <if test="accountId != null" >
-        #{accountId,jdbcType=INTEGER},
+        #{accountId,jdbcType=VARCHAR},
       </if>
       <if test="siDes != null" >
         #{siDes,jdbcType=VARCHAR},
@@ -158,10 +154,7 @@
         #{siMoney,jdbcType=DOUBLE},
       </if>
       <if test="siDate != null" >
-        #{siDate,jdbcType=DATE},
-      </if>
-      <if test="siTime != null" >
-        #{siTime,jdbcType=TIME},
+        #{siDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -175,28 +168,25 @@
     update spend_income
     <set >
       <if test="record.siId != null" >
-        si_id = #{record.siId,jdbcType=INTEGER},
+        SI_ID = #{record.siId,jdbcType=VARCHAR},
       </if>
       <if test="record.hdId != null" >
-        hd_id = #{record.hdId,jdbcType=INTEGER},
+        HD_ID = #{record.hdId,jdbcType=VARCHAR},
       </if>
       <if test="record.accountId != null" >
-        account_id = #{record.accountId,jdbcType=INTEGER},
+        ACCOUNT_ID = #{record.accountId,jdbcType=VARCHAR},
       </if>
       <if test="record.siDes != null" >
-        si_des = #{record.siDes,jdbcType=VARCHAR},
+        SI_DES = #{record.siDes,jdbcType=VARCHAR},
       </if>
       <if test="record.siType != null" >
-        si_type = #{record.siType,jdbcType=VARCHAR},
+        SI_TYPE = #{record.siType,jdbcType=VARCHAR},
       </if>
       <if test="record.siMoney != null" >
-        si_money = #{record.siMoney,jdbcType=DOUBLE},
+        SI_MONEY = #{record.siMoney,jdbcType=DOUBLE},
       </if>
       <if test="record.siDate != null" >
-        si_date = #{record.siDate,jdbcType=DATE},
-      </if>
-      <if test="record.siTime != null" >
-        si_time = #{record.siTime,jdbcType=TIME},
+        SI_DATE = #{record.siDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -205,14 +195,13 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update spend_income
-    set si_id = #{record.siId,jdbcType=INTEGER},
-      hd_id = #{record.hdId,jdbcType=INTEGER},
-      account_id = #{record.accountId,jdbcType=INTEGER},
-      si_des = #{record.siDes,jdbcType=VARCHAR},
-      si_type = #{record.siType,jdbcType=VARCHAR},
-      si_money = #{record.siMoney,jdbcType=DOUBLE},
-      si_date = #{record.siDate,jdbcType=DATE},
-      si_time = #{record.siTime,jdbcType=TIME}
+    set SI_ID = #{record.siId,jdbcType=VARCHAR},
+      HD_ID = #{record.hdId,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{record.accountId,jdbcType=VARCHAR},
+      SI_DES = #{record.siDes,jdbcType=VARCHAR},
+      SI_TYPE = #{record.siType,jdbcType=VARCHAR},
+      SI_MONEY = #{record.siMoney,jdbcType=DOUBLE},
+      SI_DATE = #{record.siDate,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -221,38 +210,34 @@
     update spend_income
     <set >
       <if test="hdId != null" >
-        hd_id = #{hdId,jdbcType=INTEGER},
+        HD_ID = #{hdId,jdbcType=VARCHAR},
       </if>
       <if test="accountId != null" >
-        account_id = #{accountId,jdbcType=INTEGER},
+        ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
       </if>
       <if test="siDes != null" >
-        si_des = #{siDes,jdbcType=VARCHAR},
+        SI_DES = #{siDes,jdbcType=VARCHAR},
       </if>
       <if test="siType != null" >
-        si_type = #{siType,jdbcType=VARCHAR},
+        SI_TYPE = #{siType,jdbcType=VARCHAR},
       </if>
       <if test="siMoney != null" >
-        si_money = #{siMoney,jdbcType=DOUBLE},
+        SI_MONEY = #{siMoney,jdbcType=DOUBLE},
       </if>
       <if test="siDate != null" >
-        si_date = #{siDate,jdbcType=DATE},
-      </if>
-      <if test="siTime != null" >
-        si_time = #{siTime,jdbcType=TIME},
+        SI_DATE = #{siDate,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where si_id = #{siId,jdbcType=INTEGER}
+    where SI_ID = #{siId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.seasonteam.season.model.SpendIncome" >
     update spend_income
-    set hd_id = #{hdId,jdbcType=INTEGER},
-      account_id = #{accountId,jdbcType=INTEGER},
-      si_des = #{siDes,jdbcType=VARCHAR},
-      si_type = #{siType,jdbcType=VARCHAR},
-      si_money = #{siMoney,jdbcType=DOUBLE},
-      si_date = #{siDate,jdbcType=DATE},
-      si_time = #{siTime,jdbcType=TIME}
-    where si_id = #{siId,jdbcType=INTEGER}
+    set HD_ID = #{hdId,jdbcType=VARCHAR},
+      ACCOUNT_ID = #{accountId,jdbcType=VARCHAR},
+      SI_DES = #{siDes,jdbcType=VARCHAR},
+      SI_TYPE = #{siType,jdbcType=VARCHAR},
+      SI_MONEY = #{siMoney,jdbcType=DOUBLE},
+      SI_DATE = #{siDate,jdbcType=TIMESTAMP}
+    where SI_ID = #{siId,jdbcType=VARCHAR}
   </update>
 </mapper>

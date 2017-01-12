@@ -105,202 +105,202 @@ public class ExpenseTypeExample {
         }
 
         public Criteria andEtIdIsNull() {
-            addCriterion("et_id is null");
+            addCriterion("ET_ID is null");
             return (Criteria) this;
         }
 
         public Criteria andEtIdIsNotNull() {
-            addCriterion("et_id is not null");
+            addCriterion("ET_ID is not null");
             return (Criteria) this;
         }
 
         public Criteria andEtIdEqualTo(Integer value) {
-            addCriterion("et_id =", value, "etId");
+            addCriterion("ET_ID =", value, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdNotEqualTo(Integer value) {
-            addCriterion("et_id <>", value, "etId");
+            addCriterion("ET_ID <>", value, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdGreaterThan(Integer value) {
-            addCriterion("et_id >", value, "etId");
+            addCriterion("ET_ID >", value, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("et_id >=", value, "etId");
+            addCriterion("ET_ID >=", value, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdLessThan(Integer value) {
-            addCriterion("et_id <", value, "etId");
+            addCriterion("ET_ID <", value, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdLessThanOrEqualTo(Integer value) {
-            addCriterion("et_id <=", value, "etId");
+            addCriterion("ET_ID <=", value, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdIn(List<Integer> values) {
-            addCriterion("et_id in", values, "etId");
+            addCriterion("ET_ID in", values, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdNotIn(List<Integer> values) {
-            addCriterion("et_id not in", values, "etId");
+            addCriterion("ET_ID not in", values, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdBetween(Integer value1, Integer value2) {
-            addCriterion("et_id between", value1, value2, "etId");
+            addCriterion("ET_ID between", value1, value2, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("et_id not between", value1, value2, "etId");
+            addCriterion("ET_ID not between", value1, value2, "etId");
             return (Criteria) this;
         }
 
         public Criteria andEtNameIsNull() {
-            addCriterion("et_name is null");
+            addCriterion("ET_NAME is null");
             return (Criteria) this;
         }
 
         public Criteria andEtNameIsNotNull() {
-            addCriterion("et_name is not null");
+            addCriterion("ET_NAME is not null");
             return (Criteria) this;
         }
 
         public Criteria andEtNameEqualTo(String value) {
-            addCriterion("et_name =", value, "etName");
+            addCriterion("ET_NAME =", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameNotEqualTo(String value) {
-            addCriterion("et_name <>", value, "etName");
+            addCriterion("ET_NAME <>", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameGreaterThan(String value) {
-            addCriterion("et_name >", value, "etName");
+            addCriterion("ET_NAME >", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameGreaterThanOrEqualTo(String value) {
-            addCriterion("et_name >=", value, "etName");
+            addCriterion("ET_NAME >=", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameLessThan(String value) {
-            addCriterion("et_name <", value, "etName");
+            addCriterion("ET_NAME <", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameLessThanOrEqualTo(String value) {
-            addCriterion("et_name <=", value, "etName");
+            addCriterion("ET_NAME <=", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameLike(String value) {
-            addCriterion("et_name like", value, "etName");
+            addCriterion("ET_NAME like", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameNotLike(String value) {
-            addCriterion("et_name not like", value, "etName");
+            addCriterion("ET_NAME not like", value, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameIn(List<String> values) {
-            addCriterion("et_name in", values, "etName");
+            addCriterion("ET_NAME in", values, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameNotIn(List<String> values) {
-            addCriterion("et_name not in", values, "etName");
+            addCriterion("ET_NAME not in", values, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameBetween(String value1, String value2) {
-            addCriterion("et_name between", value1, value2, "etName");
+            addCriterion("ET_NAME between", value1, value2, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtNameNotBetween(String value1, String value2) {
-            addCriterion("et_name not between", value1, value2, "etName");
+            addCriterion("ET_NAME not between", value1, value2, "etName");
             return (Criteria) this;
         }
 
         public Criteria andEtDesIsNull() {
-            addCriterion("et_des is null");
+            addCriterion("ET_DES is null");
             return (Criteria) this;
         }
 
         public Criteria andEtDesIsNotNull() {
-            addCriterion("et_des is not null");
+            addCriterion("ET_DES is not null");
             return (Criteria) this;
         }
 
         public Criteria andEtDesEqualTo(String value) {
-            addCriterion("et_des =", value, "etDes");
+            addCriterion("ET_DES =", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesNotEqualTo(String value) {
-            addCriterion("et_des <>", value, "etDes");
+            addCriterion("ET_DES <>", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesGreaterThan(String value) {
-            addCriterion("et_des >", value, "etDes");
+            addCriterion("ET_DES >", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesGreaterThanOrEqualTo(String value) {
-            addCriterion("et_des >=", value, "etDes");
+            addCriterion("ET_DES >=", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesLessThan(String value) {
-            addCriterion("et_des <", value, "etDes");
+            addCriterion("ET_DES <", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesLessThanOrEqualTo(String value) {
-            addCriterion("et_des <=", value, "etDes");
+            addCriterion("ET_DES <=", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesLike(String value) {
-            addCriterion("et_des like", value, "etDes");
+            addCriterion("ET_DES like", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesNotLike(String value) {
-            addCriterion("et_des not like", value, "etDes");
+            addCriterion("ET_DES not like", value, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesIn(List<String> values) {
-            addCriterion("et_des in", values, "etDes");
+            addCriterion("ET_DES in", values, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesNotIn(List<String> values) {
-            addCriterion("et_des not in", values, "etDes");
+            addCriterion("ET_DES not in", values, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesBetween(String value1, String value2) {
-            addCriterion("et_des between", value1, value2, "etDes");
+            addCriterion("ET_DES between", value1, value2, "etDes");
             return (Criteria) this;
         }
 
         public Criteria andEtDesNotBetween(String value1, String value2) {
-            addCriterion("et_des not between", value1, value2, "etDes");
+            addCriterion("ET_DES not between", value1, value2, "etDes");
             return (Criteria) this;
         }
     }

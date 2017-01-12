@@ -2,13 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="org.seasonteam.season.mapper.UserMapper" >
   <resultMap id="BaseResultMap" type="org.seasonteam.season.model.User" >
-    <id column="uid" property="uid" jdbcType="INTEGER" />
-    <result column="username" property="username" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="token" property="token" jdbcType="VARCHAR" />
-    <result column="reg_time" property="regTime" jdbcType="VARCHAR" />
-    <result column="appId" property="appid" jdbcType="VARCHAR" />
-    <result column="userImage" property="userimage" jdbcType="VARCHAR" />
+    <id column="UID" property="uid" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="REG_TIME" property="regTime" jdbcType="TIMESTAMP" />
+    <result column="APPID" property="appid" jdbcType="VARCHAR" />
+    <result column="USERIMAGE" property="userimage" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="TOKEN" property="token" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    uid, username, password, token, reg_time, appId, userImage
+    UID, USERNAME, PASSWORD, REG_TIME, APPID, USERIMAGE, EMAIL, PHONE, TOKEN
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="org.seasonteam.season.model.UserExample" >
     select
@@ -85,15 +87,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from user
-    where uid = #{uid,jdbcType=INTEGER}
+    where UID = #{uid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from user
-    where uid = #{uid,jdbcType=INTEGER}
+    where UID = #{uid,jdbcType=VARCHAR}
   </delete>
   <delete id="deleteByExample" parameterType="org.seasonteam.season.model.UserExample" >
     delete from user
@@ -102,41 +104,49 @@
     </if>
   </delete>
   <insert id="insert" parameterType="org.seasonteam.season.model.User" >
-    insert into user (uid, username, password, 
-      token, reg_time, appId, 
-      userImage)
-    values (#{uid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{token,jdbcType=VARCHAR}, #{regTime,jdbcType=VARCHAR}, #{appid,jdbcType=VARCHAR}, 
-      #{userimage,jdbcType=VARCHAR})
+    insert into user (UID, USERNAME, PASSWORD, 
+      REG_TIME, APPID, USERIMAGE, 
+      EMAIL, PHONE, TOKEN
+      )
+    values (#{uid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{regTime,jdbcType=TIMESTAMP}, #{appid,jdbcType=VARCHAR}, #{userimage,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.seasonteam.season.model.User" >
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
-        uid,
+        UID,
       </if>
       <if test="username != null" >
-        username,
+        USERNAME,
       </if>
       <if test="password != null" >
-        password,
-      </if>
-      <if test="token != null" >
-        token,
+        PASSWORD,
       </if>
       <if test="regTime != null" >
-        reg_time,
+        REG_TIME,
       </if>
       <if test="appid != null" >
-        appId,
+        APPID,
       </if>
       <if test="userimage != null" >
-        userImage,
+        USERIMAGE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="token != null" >
+        TOKEN,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
-        #{uid,jdbcType=INTEGER},
+        #{uid,jdbcType=VARCHAR},
       </if>
       <if test="username != null" >
         #{username,jdbcType=VARCHAR},
@@ -144,17 +154,23 @@
       <if test="password != null" >
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="token != null" >
-        #{token,jdbcType=VARCHAR},
-      </if>
       <if test="regTime != null" >
-        #{regTime,jdbcType=VARCHAR},
+        #{regTime,jdbcType=TIMESTAMP},
       </if>
       <if test="appid != null" >
         #{appid,jdbcType=VARCHAR},
       </if>
       <if test="userimage != null" >
         #{userimage,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -168,25 +184,31 @@
     update user
     <set >
       <if test="record.uid != null" >
-        uid = #{record.uid,jdbcType=INTEGER},
+        UID = #{record.uid,jdbcType=VARCHAR},
       </if>
       <if test="record.username != null" >
-        username = #{record.username,jdbcType=VARCHAR},
+        USERNAME = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null" >
-        password = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.token != null" >
-        token = #{record.token,jdbcType=VARCHAR},
+        PASSWORD = #{record.password,jdbcType=VARCHAR},
       </if>
       <if test="record.regTime != null" >
-        reg_time = #{record.regTime,jdbcType=VARCHAR},
+        REG_TIME = #{record.regTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.appid != null" >
-        appId = #{record.appid,jdbcType=VARCHAR},
+        APPID = #{record.appid,jdbcType=VARCHAR},
       </if>
       <if test="record.userimage != null" >
-        userImage = #{record.userimage,jdbcType=VARCHAR},
+        USERIMAGE = #{record.userimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.token != null" >
+        TOKEN = #{record.token,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -195,13 +217,15 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update user
-    set uid = #{record.uid,jdbcType=INTEGER},
-      username = #{record.username,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR},
-      token = #{record.token,jdbcType=VARCHAR},
-      reg_time = #{record.regTime,jdbcType=VARCHAR},
-      appId = #{record.appid,jdbcType=VARCHAR},
-      userImage = #{record.userimage,jdbcType=VARCHAR}
+    set UID = #{record.uid,jdbcType=VARCHAR},
+      USERNAME = #{record.username,jdbcType=VARCHAR},
+      PASSWORD = #{record.password,jdbcType=VARCHAR},
+      REG_TIME = #{record.regTime,jdbcType=TIMESTAMP},
+      APPID = #{record.appid,jdbcType=VARCHAR},
+      USERIMAGE = #{record.userimage,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      TOKEN = #{record.token,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -210,34 +234,42 @@
     update user
     <set >
       <if test="username != null" >
-        username = #{username,jdbcType=VARCHAR},
+        USERNAME = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="token != null" >
-        token = #{token,jdbcType=VARCHAR},
+        PASSWORD = #{password,jdbcType=VARCHAR},
       </if>
       <if test="regTime != null" >
-        reg_time = #{regTime,jdbcType=VARCHAR},
+        REG_TIME = #{regTime,jdbcType=TIMESTAMP},
       </if>
       <if test="appid != null" >
-        appId = #{appid,jdbcType=VARCHAR},
+        APPID = #{appid,jdbcType=VARCHAR},
       </if>
       <if test="userimage != null" >
-        userImage = #{userimage,jdbcType=VARCHAR},
+        USERIMAGE = #{userimage,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null" >
+        TOKEN = #{token,jdbcType=VARCHAR},
       </if>
     </set>
-    where uid = #{uid,jdbcType=INTEGER}
+    where UID = #{uid,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="org.seasonteam.season.model.User" >
     update user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      token = #{token,jdbcType=VARCHAR},
-      reg_time = #{regTime,jdbcType=VARCHAR},
-      appId = #{appid,jdbcType=VARCHAR},
-      userImage = #{userimage,jdbcType=VARCHAR}
-    where uid = #{uid,jdbcType=INTEGER}
+    set USERNAME = #{username,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      REG_TIME = #{regTime,jdbcType=TIMESTAMP},
+      APPID = #{appid,jdbcType=VARCHAR},
+      USERIMAGE = #{userimage,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      TOKEN = #{token,jdbcType=VARCHAR}
+    where UID = #{uid,jdbcType=VARCHAR}
   </update>
 </mapper>

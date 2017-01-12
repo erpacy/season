@@ -1,16 +1,17 @@
 package org.seasonteam.season.mapper;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.seasonteam.season.model.Account;
 import org.seasonteam.season.model.AccountExample;
+
+import java.util.List;
 
 public interface AccountMapper {
     int countByExample(AccountExample example);
 
     int deleteByExample(AccountExample example);
 
-    int deleteByPrimaryKey(Integer accountId);
+    int deleteByPrimaryKey(String accountId);
 
     int insert(Account record);
 
@@ -18,7 +19,7 @@ public interface AccountMapper {
 
     List<Account> selectByExample(AccountExample example);
 
-    Account selectByPrimaryKey(Integer accountId);
+    Account selectByPrimaryKey(String accountId);
 
     int updateByExampleSelective(@Param("record") Account record, @Param("example") AccountExample example);
 
