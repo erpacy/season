@@ -28,6 +28,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/sendCode", method = RequestMethod.POST)
+    public ResultHeader sendCode(@RequestParam("phone") String phone) {
+        return userService.sendCode(phone);
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResultHeader register(User user) {
         return userService.add(user);

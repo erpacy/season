@@ -1,6 +1,7 @@
 package org.seasonteam.season.util;
 
 import java.security.MessageDigest;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -53,9 +54,34 @@ public class BaseUtil {
         return hexValue.toString();
     }
 
+    /**
+     * 生成long型id
+     *
+     * @return
+     */
     public static int genId() {
         long l = System.currentTimeMillis();
         Long aLong = new Long(l);
         return aLong.intValue();
+    }
+
+    /**
+     * 生成短信验证码
+     *
+     * @param charCount
+     * @return
+     */
+    public static String getRandNum(int charCount) {
+        String charValue = "";
+        for (int i = 0; i < charCount; i++) {
+            char c = (char) (randomInt(0, 10) + '0');
+            charValue += String.valueOf(c);
+        }
+        return charValue;
+    }
+
+    public static int randomInt(int from, int to) {
+        Random r = new Random();
+        return from + r.nextInt(to - from);
     }
 }
