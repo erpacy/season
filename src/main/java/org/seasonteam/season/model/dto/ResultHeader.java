@@ -14,7 +14,8 @@ public class ResultHeader implements Serializable {
 
     private String msg;
 
-    public ResultHeader() {}
+    public ResultHeader() {
+    }
 
     public ResultHeader(Integer code, String msg) {
         this.code = code;

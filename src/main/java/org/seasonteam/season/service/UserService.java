@@ -21,11 +21,11 @@ public interface UserService {
     /**
      * 登陆
      *
-     * @param username
+     * @param phone
      * @param password
      * @return
      */
-    ResultHeader login(String username, String password);
+    ResultHeader login(String phone, String password);
 
     /**
      * 发送呀正码

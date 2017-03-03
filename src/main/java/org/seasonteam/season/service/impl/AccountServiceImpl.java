@@ -29,8 +29,10 @@ public class AccountServiceImpl implements AccountService {
         AccountQueryResult result = new AccountQueryResult();
         try {
             List<Account> accounts = accountMapper.selectByExample(createExample(condition));
-            result.setAccounts(accounts);
+            AccountQueryResult.AccountQueryResultData data = new AccountQueryResult.AccountQueryResultData();
+            data.setAccounts(accounts);
             result.setMsg("查询成功");
+            result.setData(data);
         } catch (Exception e) {
             e.printStackTrace();
             result.setCode(0);

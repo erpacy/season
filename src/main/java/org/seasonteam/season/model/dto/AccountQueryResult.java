@@ -13,13 +13,25 @@ import java.util.List;
  */
 public class AccountQueryResult extends ResultHeader implements Serializable {
 
-    private List<Account> accounts;
+    private AccountQueryResultData data;
 
-    public List<Account> getAccounts() {
-        return accounts;
+    public AccountQueryResultData getData() {
+        return data;
     }
 
-    public void setAccounts(List<Account> accounts) {
-        this.accounts = accounts;
+    public void setData(AccountQueryResultData data) {
+        this.data = data;
+    }
+
+    public static class AccountQueryResultData implements Serializable {
+        private List<Account> accounts;
+
+        public List<Account> getAccounts() {
+            return accounts;
+        }
+
+        public void setAccounts(List<Account> accounts) {
+            this.accounts = accounts;
+        }
     }
 }

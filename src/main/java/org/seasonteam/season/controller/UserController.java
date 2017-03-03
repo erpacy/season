@@ -39,9 +39,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultHeader login(@RequestParam("username") String username,
+    public ResultHeader login(@RequestParam("username") String phone,
                               @RequestParam("password") String password) {
-        return userService.login(username, password);
+        return userService.login(phone, password);
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
@@ -56,7 +56,9 @@ public class UserController {
             IOUtils.copy(file.getInputStream(), fos);//将MultipartFile file转成二进制流并输入到FileOutStrean
             fos.close();//养成良好习惯
             result.setMsg("上传图片成功");
-            result.setFileUrl(request.getContextPath() + "/upload/" + fileName);
+            UploadResult.UploadResultData data = new UploadResult.UploadResultData();
+            data.setFileUrl(request.getContextPath() + "/upload/" + fileName);
+            result.setData(data);
         } catch (Exception e) {
             e.printStackTrace();
             result.setCode(0);

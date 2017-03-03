@@ -7,6 +7,7 @@ import org.seasonteam.season.model.UserExample;
 import org.seasonteam.season.model.dto.ResultHeader;
 import org.seasonteam.season.service.UserService;
 import org.seasonteam.season.util.BaseUtil;
+import org.seasonteam.season.util.DateUtil;
 import org.seasonteam.season.util.SmsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -53,6 +54,7 @@ public class UserServiceImpl implements UserService {
             if (StringUtils.isNotBlank(user.getPassword())) {
                 user.setPassword(BaseUtil.md5(user.getPassword()));
             }
+            user.setUsername("season:" + DateUtil.getCurrentTimestamp());
             userMapper.insertSelective(user);
             result.setCode(1);
             result.setMsg("添加用户成功");
@@ -65,13 +67,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResultHeader login(String username, String password) {
+    public ResultHeader login(String phone, String password) {
         ResultHeader result = new ResultHeader();
         UserExample example = new UserExample();
-        UserExample.Criteria criteria = example.createCriteria();
-        criteria.andUsernameEqualTo(username);
         UserExample.Criteria criteria1 = example.createCriteria();
-        criteria1.andPhoneEqualTo(username);
+        criteria1.andPhoneEqualTo(phone);
         List<User> users = userMapper.selectByExample(example);
         if (CollectionUtils.isEmpty(users)) {
             result.setCode(0);

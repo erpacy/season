@@ -10,13 +10,25 @@ import java.io.Serializable;
  */
 public class UploadResult extends ResultHeader implements Serializable {
 
-    private String fileUrl;
+    private UploadResultData data;
 
-    public String getFileUrl() {
-        return fileUrl;
+    public UploadResultData getData() {
+        return data;
     }
 
-    public void setFileUrl(String fileUrl) {
-        this.fileUrl = fileUrl;
+    public void setData(UploadResultData data) {
+        this.data = data;
+    }
+
+    public static class UploadResultData implements Serializable {
+        private String fileUrl;
+
+        public String getFileUrl() {
+            return fileUrl;
+        }
+
+        public void setFileUrl(String fileUrl) {
+            this.fileUrl = fileUrl;
+        }
     }
 }
